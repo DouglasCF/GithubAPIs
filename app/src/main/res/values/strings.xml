@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GithubAPIs</string>
+
+    <string name="main_button">Random Emoji</string>
 </resources>

@@ -1,19 +1,49 @@
 package br.com.fornaro.githubapis.features.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import br.com.fornaro.githubapis.R
+import br.com.fornaro.githubapis.databinding.FragmentMainBinding
+import coil.load
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class MainFragment : Fragment() {
+@AndroidEntryPoint
+class MainFragment : Fragment(R.layout.fragment_main) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    private val viewModel: MainViewModel by viewModels()
+
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentMainBinding.bind(view)
+        setupButton()
+        setupViewModel()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupButton() = with(binding.bMain) {
+        setOnClickListener { viewModel.getRandomEmoji() }
+    }
+
+    private fun setupViewModel() = with(viewModel) {
+        lifecycleScope.launch {
+            state.collect(::handleState)
+        }
+    }
+
+    private fun handleState(state: MainState) {
+        binding.imMain.load(state.emoji?.url)
     }
 
 }

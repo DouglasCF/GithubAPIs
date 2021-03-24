@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -15,6 +17,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -45,6 +53,9 @@ dependencies {
     // Material Design
     implementation deps.material.material
 
+    // Leak Canary
+    debugImplementation deps.leak_canary.leak_canary
+
     // Navigation Component
     implementation deps.navigation.fragment
     implementation deps.navigation.ui
@@ -53,5 +64,19 @@ dependencies {
     implementation deps.coroutines.core
     implementation deps.coroutines.android
 
+    // Retrofit
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.moshi
+
+    // Hilt
+    kapt deps.hilt.google_compiler
+    implementation deps.hilt.android
+    kapt deps.hilt.androidx_compiler
+    implementation deps.hilt.viewmodel
+
+    // Coil
+    implementation deps.coil.coil
+
+    // Tests
     testImplementation deps.junit.junit
 }
