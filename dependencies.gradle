@@ -49,9 +49,24 @@ coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutin
 deps.coroutines = coroutines
 
 def leak_canary_version = '2.6'
-def leak_canary=[:]
+def leak_canary = [:]
 leak_canary.leak_canary = "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
 deps.leak_canary = leak_canary
+
+def retrofit_version = '2.9.0'
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+retrofit.moshi = "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+deps.retrofit = retrofit
+
+def hilt_version = '2.31.2-alpha'
+def hilt = [:]
+hilt.plugin = "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+hilt.android = "com.google.dagger:hilt-android:$hilt_version"
+hilt.google_compiler = "com.google.dagger:hilt-android-compiler:$hilt_version"
+hilt.viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+hilt.androidx_compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
+deps.hilt = hilt
 
 ext.deps = deps
 
