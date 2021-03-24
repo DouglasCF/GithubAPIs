@@ -74,6 +74,9 @@ dependencies {
     kapt deps.hilt.androidx_compiler
     implementation deps.hilt.viewmodel
 
+    // Coil
+    implementation deps.coil.coil
+
     // Tests
     testImplementation deps.junit.junit
 }

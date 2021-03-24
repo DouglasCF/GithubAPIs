@@ -68,6 +68,11 @@ hilt.viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 hilt.androidx_compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
 deps.hilt = hilt
 
+def coil_version = '1.1.0'
+def coil = [:]
+coil.coil = "io.coil-kt:coil:$coil_version"
+deps.coil = coil
+
 ext.deps = deps
 
 static def addRepos(RepositoryHandler handler) {
