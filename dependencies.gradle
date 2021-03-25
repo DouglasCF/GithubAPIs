@@ -73,6 +73,13 @@ def coil = [:]
 coil.coil = "io.coil-kt:coil:$coil_version"
 deps.coil = coil
 
+def room_version = '2.2.6'
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$room_version"
+room.ktx = "androidx.room:room-ktx:$room_version"
+room.compiler = "androidx.room:room-compiler:$room_version"
+deps.room = room
+
 ext.deps = deps
 
 static def addRepos(RepositoryHandler handler) {
