@@ -77,6 +77,11 @@ dependencies {
     // Coil
     implementation deps.coil.coil
 
+    // Room
+    implementation deps.room.runtime
+    implementation deps.room.ktx
+    kapt deps.room.compiler
+
     // Tests
     testImplementation deps.junit.junit
 }

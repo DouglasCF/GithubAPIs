@@ -11,6 +11,6 @@ class EmojiRetrofitRemoteDataSource @Inject constructor(
 ) : EmojiRemoteDataSource {
     override suspend fun fetchAll(): List<Emoji> {
         val response = api.fetchEmojis()
-        return mapper.map(response)
+        return response.map(mapper::map)
     }
 }
