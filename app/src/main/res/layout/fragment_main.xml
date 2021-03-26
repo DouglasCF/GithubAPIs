@@ -16,12 +16,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/b_main"
+        android:id="@+id/b_main_random_emoji"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_button"
+        android:text="@string/main_random_emoji_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/im_main" />
+
+    <Button
+        android:id="@+id/b_main_emoji_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_emoji_list_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/b_main_random_emoji" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
