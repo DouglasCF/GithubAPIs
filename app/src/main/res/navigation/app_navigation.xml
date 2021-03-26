@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="br.com.fornaro.githubapis.features.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_emojisFragment"
+            app:destination="@id/emojisFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emojisFragment"
+        android:name="br.com.fornaro.githubapis.features.emojis.EmojisFragment"
+        android:label="fragment_emojis"
+        tools:layout="@layout/fragment_emojis" />
 </navigation>

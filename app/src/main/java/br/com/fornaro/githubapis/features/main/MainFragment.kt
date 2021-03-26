@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import br.com.fornaro.githubapis.R
 import br.com.fornaro.githubapis.databinding.FragmentMainBinding
 import coil.load
@@ -23,7 +24,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainBinding.bind(view)
-        setupButton()
+        setupRandomEmojiButton()
+        setupEmojiListButton()
         setupViewModel()
     }
 
@@ -32,14 +34,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         _binding = null
     }
 
-    private fun setupButton() = with(binding.bMain) {
+    private fun setupRandomEmojiButton() = with(binding.bMainRandomEmoji) {
         setOnClickListener { viewModel.getRandomEmoji() }
     }
 
+    private fun setupEmojiListButton() = with(binding.bMainEmojiList) {
+        setOnClickListener { findNavController().navigate(R.id.action_emojisFragment) }
+    }
+
     private fun setupViewModel() = with(viewModel) {
-        lifecycleScope.launch {
-            state.collect(::handleState)
-        }
+        lifecycleScope.launch { state.collect(::handleState) }
     }
 
     private fun handleState(state: MainState) {
