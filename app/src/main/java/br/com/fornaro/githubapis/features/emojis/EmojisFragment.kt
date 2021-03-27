@@ -2,7 +2,6 @@ package br.com.fornaro.githubapis.features.emojis
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import br.com.fornaro.githubapis.R
@@ -24,12 +23,17 @@ class EmojisFragment : BaseFragment<FragmentEmojisBinding>(R.layout.fragment_emo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupSwipeRefresh()
         setupViewModel()
     }
 
     private fun setupRecyclerView() = with(binding.rvEmojis) {
         setHasFixedSize(true)
         adapter = viewAdapter
+    }
+
+    private fun setupSwipeRefresh() = with(binding.srEmojis) {
+        setOnRefreshListener { viewModel.loadEmojis() }
     }
 
     private fun setupViewModel() = with(viewModel) {
@@ -50,6 +54,6 @@ class EmojisFragment : BaseFragment<FragmentEmojisBinding>(R.layout.fragment_emo
     }
 
     private fun handleLoading(loading: Boolean) {
-        binding.pbEmojis.isVisible = loading
+        binding.srEmojis.isRefreshing = loading
     }
 }
