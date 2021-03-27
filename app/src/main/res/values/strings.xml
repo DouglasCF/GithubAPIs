@@ -3,4 +3,7 @@
 
     <string name="main_random_emoji_button">Random Emoji</string>
     <string name="main_emoji_list_button">Emoji List</string>
+
+    <string name="message_event_no_internet">No internet</string>
+    <string name="message_event_generic">Something wrong happened. Please try again</string>
 </resources>
