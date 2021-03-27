@@ -49,6 +49,7 @@ dependencies {
     implementation deps.androidx.core
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.swiperefresh
 
     // Material Design
     implementation deps.material.material
