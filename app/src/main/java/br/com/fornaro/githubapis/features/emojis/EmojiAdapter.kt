@@ -7,7 +7,9 @@ import br.com.fornaro.githubapis.databinding.ItemEmojiBinding
 import br.com.fornaro.githubapis.domain.models.Emoji
 import coil.load
 
-class EmojiAdapter : RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
+class EmojiAdapter(
+    private val action: (Emoji) -> Unit
+) : RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
 
     var list = emptyList<Emoji>()
         set(value) {
@@ -20,7 +22,8 @@ class EmojiAdapter : RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
             LayoutInflater.from(parent.context),
             parent,
             false
-        )
+        ),
+        action
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -29,10 +32,14 @@ class EmojiAdapter : RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
 
     override fun getItemCount() = list.size
 
-    class ViewHolder(private val binding: ItemEmojiBinding) :
+    class ViewHolder(
+        private val binding: ItemEmojiBinding,
+        private val action: (Emoji) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(emoji: Emoji) = with(binding) {
             ivItemEmoji.load(emoji.url)
+            ivItemEmoji.setOnClickListener { action(emoji) }
         }
     }
 }

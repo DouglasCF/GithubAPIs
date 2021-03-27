@@ -17,7 +17,7 @@ class EmojisFragment : BaseFragment<FragmentEmojisBinding>(R.layout.fragment_emo
 
     private val viewModel: EmojisViewModel by viewModels()
 
-    private val viewAdapter by lazy(LazyThreadSafetyMode.NONE) { EmojiAdapter() }
+    private val viewAdapter by lazy(LazyThreadSafetyMode.NONE) { EmojiAdapter(viewModel::removeEmoji) }
 
     override fun bind(view: View) = FragmentEmojisBinding.bind(view)
 
