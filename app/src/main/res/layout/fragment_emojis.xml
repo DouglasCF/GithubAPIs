@@ -13,4 +13,10 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="4" />
 
+    <ProgressBar
+        android:id="@+id/pb_emojis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
 </FrameLayout>
