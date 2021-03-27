@@ -5,7 +5,7 @@ import br.com.fornaro.githubapis.domain.models.Emoji
 import br.com.fornaro.githubapis.domain.repositories.EmojiRepository
 import br.com.fornaro.githubapis.features.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class EmojisViewModel @Inject constructor(
     private val emojiRepository: EmojiRepository
 ) : BaseViewModel() {
 
-    private val _state = MutableSharedFlow<EmojisState>()
+    private val _state = MutableStateFlow<EmojisState>(EmojisState.Loading)
     val state get() = _state
 
     init {
@@ -23,10 +23,15 @@ class EmojisViewModel @Inject constructor(
 
     fun loadEmojis() {
         viewModelScope.launch(exceptionHandler) {
-            _state.emit(EmojisState.Loading)
+            _state.value = EmojisState.Loading
             val emojis = emojiRepository.fetchAll()
-            _state.emit(EmojisState.Content(emojis))
+            _state.value = EmojisState.Content(emojis)
         }
+    }
+
+    fun removeEmoji(emoji: Emoji) {
+        val content = _state.value as EmojisState.Content
+        _state.value = content.copy(emojis = content.emojis.minus(emoji))
     }
 }
 
