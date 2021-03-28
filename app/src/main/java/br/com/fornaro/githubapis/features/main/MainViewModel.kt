@@ -24,6 +24,10 @@ class MainViewModel @Inject constructor(
             _state.value = state.value.copy(isLoadingEmojis = false, emoji = emoji)
         }
     }
+
+    fun searchUsername(username: String) {
+
+    }
 }
 
 data class MainState(
