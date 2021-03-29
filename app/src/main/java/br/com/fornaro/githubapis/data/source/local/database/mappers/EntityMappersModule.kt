@@ -10,5 +10,8 @@ import dagger.hilt.components.SingletonComponent
 object EntityMappersModule {
 
     @Provides
-    fun provideEntityEmojiMapper(): EmojiEntityMapperAlias = EmojiEntityMapper
+    fun provideEmojiEntityMapper(): EmojiEntityMapperAlias = EmojiEntityMapper
+
+    @Provides
+    fun provideUserEntityMapper(): UserEntityMapperAlias = UserEntityMapper
 }

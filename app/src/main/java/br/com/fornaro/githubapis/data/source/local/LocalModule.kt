@@ -11,4 +11,7 @@ abstract class LocalModule {
 
     @Binds
     abstract fun bindEmojiLocalDataSource(impl: EmojiRoomLocalDataSource): EmojiLocalDataSource
+
+    @Binds
+    abstract fun bindUserLocalDataSource(impl: UserRoomLocalDataSource): UserLocalDataSource
 }
