@@ -24,10 +24,10 @@ abstract class BaseFragment<T : ViewBinding>(@LayoutRes layout: Int) : Fragment(
         _binding = null
     }
 
-    protected fun handleMessage(message: MessageEvent) {
+    protected open fun handleMessage(message: MessageEvent) {
         when (message) {
             MessageEvent.NO_INTERNET -> toast(R.string.message_event_no_internet)
-            MessageEvent.GENERIC_MESSAGE -> toast(R.string.message_event_generic)
+            else -> toast(R.string.message_event_generic)
         }
     }
 

@@ -1,6 +1,8 @@
 package br.com.fornaro.githubapis.data.source.remote.api
 
 import br.com.fornaro.githubapis.BuildConfig
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,9 +15,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ApiModule {
 
     @Provides
-    fun provideRetrofit() = Retrofit.Builder()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+    @Provides
+    fun provideRetrofit(moshi: Moshi) = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     @Provides

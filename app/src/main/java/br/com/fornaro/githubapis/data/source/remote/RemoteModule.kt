@@ -11,4 +11,7 @@ abstract class RemoteModule {
 
     @Binds
     abstract fun bindEmojiRemoteDataSource(impl: EmojiRetrofitRemoteDataSource): EmojiRemoteDataSource
+
+    @Binds
+    abstract fun bindUserRemoteDataSource(impl: UserRetrofitRemoteDataSource): UserRemoteDataSource
 }

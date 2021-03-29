@@ -7,6 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import br.com.fornaro.githubapis.R
 import br.com.fornaro.githubapis.databinding.FragmentMainBinding
+import br.com.fornaro.githubapis.domain.event.MessageEvent
+import br.com.fornaro.githubapis.extensions.toast
 import br.com.fornaro.githubapis.features.BaseFragment
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         setupEmojiListButton()
         setupSearchButton()
         setupViewModel()
+    }
+
+    override fun handleMessage(message: MessageEvent) {
+        when (message) {
+            MessageEvent.USER_FOUND -> {
+                toast(R.string.main_search_user_successfully)
+                binding.etMain.text.clear()
+            }
+            MessageEvent.USER_NOT_FOUND -> toast(R.string.main_search_user_error)
+            else -> super.handleMessage(message)
+        }
     }
 
     private fun setupRandomEmojiButton() = with(binding.bMainRandomEmoji) {

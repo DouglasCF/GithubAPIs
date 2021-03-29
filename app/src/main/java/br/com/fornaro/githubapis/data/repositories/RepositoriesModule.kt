@@ -1,6 +1,7 @@
 package br.com.fornaro.githubapis.data.repositories
 
 import br.com.fornaro.githubapis.domain.repositories.EmojiRepository
+import br.com.fornaro.githubapis.domain.repositories.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,4 +13,7 @@ abstract class RepositoriesModule {
 
     @Binds
     abstract fun bindEmojiRepository(impl: EmojiRepositoryImpl): EmojiRepository
+
+    @Binds
+    abstract fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
 }
