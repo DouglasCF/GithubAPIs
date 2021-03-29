@@ -68,6 +68,7 @@ dependencies {
     // Retrofit
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.moshi
+    implementation deps.retrofit.moshi_ktx
 
     // Hilt
     kapt deps.hilt.google_compiler

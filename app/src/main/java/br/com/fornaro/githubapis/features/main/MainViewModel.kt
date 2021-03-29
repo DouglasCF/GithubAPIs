@@ -1,7 +1,9 @@
 package br.com.fornaro.githubapis.features.main
 
 import androidx.lifecycle.viewModelScope
+import br.com.fornaro.githubapis.domain.event.MessageEvent
 import br.com.fornaro.githubapis.domain.models.Emoji
+import br.com.fornaro.githubapis.domain.repositories.UserRepository
 import br.com.fornaro.githubapis.domain.usecases.GetRandomEmojiUseCase
 import br.com.fornaro.githubapis.features.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getRandomEmojiUseCase: GetRandomEmojiUseCase
+    private val getRandomEmojiUseCase: GetRandomEmojiUseCase,
+    private val userRepository: UserRepository
 ) : BaseViewModel() {
 
     private val _state = MutableStateFlow(MainState())
@@ -26,7 +29,10 @@ class MainViewModel @Inject constructor(
     }
 
     fun searchUsername(username: String) {
-
+        viewModelScope.launch(exceptionHandler) {
+            userRepository.fetch(username)
+            _message.emit(MessageEvent.USER_FOUND)
+        }
     }
 }
 

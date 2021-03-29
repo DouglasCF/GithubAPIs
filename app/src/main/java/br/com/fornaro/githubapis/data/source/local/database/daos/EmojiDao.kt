@@ -8,7 +8,7 @@ import br.com.fornaro.githubapis.data.source.local.database.entities.EmojiEntity
 @Dao
 interface EmojiDao {
 
-    @Query("SELECT * FROM emoji")
+    @Query("SELECT * FROM emojis")
     suspend fun fetchAll(): List<EmojiEntity>
 
     @Insert

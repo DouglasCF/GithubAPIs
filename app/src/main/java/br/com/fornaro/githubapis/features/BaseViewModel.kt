@@ -19,6 +19,7 @@ abstract class BaseViewModel : ViewModel() {
         viewModelScope.launch {
             val message = when (error) {
                 ErrorType.NO_INTERNET -> MessageEvent.NO_INTERNET
+                ErrorType.USER_NOT_FOUND -> MessageEvent.USER_NOT_FOUND
                 else -> MessageEvent.GENERIC_MESSAGE
             }
             _message.emit(message)

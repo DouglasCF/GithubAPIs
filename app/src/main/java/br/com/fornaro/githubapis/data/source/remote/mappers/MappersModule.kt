@@ -11,4 +11,7 @@ object MappersModule {
 
     @Provides
     fun provideEmojiMapper(): EmojiMapperAlias = EmojiMapper
+
+    @Provides
+    fun provideUserMapper(): UserMapperAlias = UserMapper
 }

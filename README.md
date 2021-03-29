@@ -4,9 +4,9 @@ This project uses some GitHub APIs to show some data into the UI.
 
 To fetch the emojis: https://api.github.com/emojis
 
-To fetch users: https://api.github.com/:username
+To fetch users: https://api.github.com/users/:username
 
-To fetch users repos: https://api.github.com/:username/:repos
+To fetch users repos: https://api.github.com/users/:username/:repos
 
 ## Architecture
 

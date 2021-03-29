@@ -34,6 +34,10 @@ class EmojisFragment : BaseFragment<FragmentEmojisBinding>(R.layout.fragment_emo
 
     private fun setupSwipeRefresh() = with(binding.srEmojis) {
         setOnRefreshListener { viewModel.loadEmojis() }
+        setColorSchemeResources(android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,
+            android.R.color.holo_red_light)
     }
 
     private fun setupViewModel() = with(viewModel) {

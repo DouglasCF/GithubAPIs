@@ -21,4 +21,7 @@ object DatabaseModule {
 
     @Provides
     fun provideEmojiDao(db: AppDatabase) = db.emojiDao()
+
+    @Provides
+    fun provideUserDao(db: AppDatabase) = db.userDao()
 }
