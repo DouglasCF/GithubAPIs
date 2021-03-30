@@ -27,6 +27,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         setupRandomEmojiButton()
         setupEmojiListButton()
         setupSearchButton()
+        setupAvatarListButton()
         setupViewModel()
     }
 
@@ -51,6 +52,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private fun setupSearchButton() = with(binding.bMainSearch) {
         setOnClickListener { viewModel.searchUsername(binding.etMain.text.toString()) }
+    }
+
+    private fun setupAvatarListButton() = with(binding.bMainAvatarList) {
+        setOnClickListener { findNavController().navigate(R.id.action_avatarsFragment) }
     }
 
     private fun setupViewModel() = with(viewModel) {
