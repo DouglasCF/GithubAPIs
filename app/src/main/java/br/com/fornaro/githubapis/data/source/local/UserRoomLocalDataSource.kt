@@ -14,7 +14,15 @@ class UserRoomLocalDataSource @Inject constructor(
         dao.select(username)
             ?.let(mapper::fromEntity)
 
+    override suspend fun fetchAll() =
+        dao.selectAll()
+            .map(mapper::fromEntity)
+
     override suspend fun insert(user: User) {
         mapper.fromDomain(user).also { dao.insert(it) }
+    }
+
+    override suspend fun delete(user: User) {
+        mapper.fromDomain(user).also { dao.delete(it) }
     }
 }

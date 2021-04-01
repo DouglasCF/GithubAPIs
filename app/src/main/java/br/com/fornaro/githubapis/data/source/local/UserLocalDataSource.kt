@@ -6,4 +6,6 @@ interface UserLocalDataSource {
 
     suspend fun fetch(username: String): User?
     suspend fun insert(user: User)
+    suspend fun fetchAll(): List<User>
+    suspend fun delete(user: User)
 }
