@@ -5,12 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import br.com.fornaro.githubapis.data.source.local.database.entities.UserEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
 
     @Query("SELECT * FROM users")
-    suspend fun selectAll(): List<UserEntity>
+    fun selectAll(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM users WHERE login = :username COLLATE NOCASE")
     suspend fun select(username: String): UserEntity?

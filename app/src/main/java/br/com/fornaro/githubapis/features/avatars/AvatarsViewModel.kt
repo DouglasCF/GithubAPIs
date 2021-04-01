@@ -6,6 +6,7 @@ import br.com.fornaro.githubapis.domain.repositories.UserRepository
 import br.com.fornaro.githubapis.features.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,14 +19,14 @@ class AvatarsViewModel @Inject constructor(
     val state get() = _state
 
     init {
-        loadUsers()
+        observeUsers()
     }
 
-    private fun loadUsers() {
+    private fun observeUsers() {
         viewModelScope.launch(exceptionHandler) {
-            _state.value = AvatarsState.Loading
-            val users = userRepository.fetchAll()
-            _state.value = AvatarsState.Content(users = users)
+            userRepository.users.collect {
+                _state.value = AvatarsState.Content(users = it)
+            }
         }
     }
 
