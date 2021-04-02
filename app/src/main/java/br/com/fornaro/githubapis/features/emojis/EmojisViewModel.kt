@@ -17,10 +17,6 @@ class EmojisViewModel @Inject constructor(
     private val _state = MutableStateFlow<EmojisState>(EmojisState.Loading)
     val state get() = _state
 
-    init {
-        loadEmojis()
-    }
-
     fun loadEmojis() {
         viewModelScope.launch(exceptionHandler) {
             _state.value = EmojisState.Loading

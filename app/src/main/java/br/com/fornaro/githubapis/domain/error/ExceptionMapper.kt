@@ -6,7 +6,7 @@ import java.net.UnknownHostException
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
 
-private const val USER_NOT_FOUND_ERROR_MESSAGE =
+const val USER_NOT_FOUND_ERROR_MESSAGE =
     "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/reference/users#get-a-user\"}"
 
 class ExceptionMapper(

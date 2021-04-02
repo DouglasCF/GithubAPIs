@@ -1,5 +1,6 @@
 package br.com.fornaro.githubapis.data.repositories
 
+import br.com.fornaro.githubapis.data.dispatchers.DispatcherMap
 import br.com.fornaro.githubapis.data.source.local.UserLocalDataSource
 import br.com.fornaro.githubapis.data.source.remote.UserRemoteDataSource
 import br.com.fornaro.githubapis.domain.models.User
@@ -11,13 +12,14 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val remoteDataSource: UserRemoteDataSource,
-    private val localDataSource: UserLocalDataSource
+    private val localDataSource: UserLocalDataSource,
+    private val dispatcher: DispatcherMap
 ) : UserRepository {
 
     override val users: Flow<List<User>>
         get() = localDataSource.users
 
-    override suspend fun fetch(username: String) = withContext(Dispatchers.IO) {
+    override suspend fun fetch(username: String) = withContext(dispatcher.io) {
         localDataSource.fetch(username)
             ?: remoteDataSource.fetch(username).also { localDataSource.insert(it) }
     }

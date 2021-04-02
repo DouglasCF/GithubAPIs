@@ -20,6 +20,11 @@ class EmojisFragment : BaseFragment<FragmentEmojisBinding>(R.layout.fragment_emo
 
     override fun bind(view: View) = FragmentEmojisBinding.bind(view)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.loadEmojis()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()

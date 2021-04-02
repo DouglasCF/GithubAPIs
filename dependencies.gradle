@@ -14,14 +14,16 @@ def core_version = '1.3.2'
 def appcompat_version = '1.2.0'
 def constraint_layout_version = '2.0.4'
 def swiperefresh_version = '1.1.0'
+def test_version = '2.1.0'
 def androidx = [:]
 androidx.core = "androidx.core:core-ktx:$core_version"
 androidx.appcompat = "androidx.appcompat:appcompat:$appcompat_version"
 androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 androidx.swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
+androidx.test = "androidx.arch.core:core-testing:$test_version"
 deps.androidx = androidx
 
-def kotlin_version = '1.4.21'
+def kotlin_version = '1.4.30'
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -43,10 +45,11 @@ navigation.ui = "androidx.navigation:navigation-ui-ktx:$navigation_version"
 navigation.safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
 deps.navigation = navigation
 
-def coroutines_version = '1.4.2'
+def coroutines_version = '1.4.3'
 def coroutines = [:]
 coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+coroutines.test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 deps.coroutines = coroutines
 
 def leak_canary_version = '2.6'
@@ -84,6 +87,14 @@ deps.room = room
 def lottie_version = '3.6.1'
 def lottie = "com.airbnb.android:lottie:$lottie_version"
 deps.lottie = lottie
+
+def mockk_version = '1.9.3'
+def mockk = "io.mockk:mockk:$mockk_version"
+deps.mockk = mockk
+
+def turbine_version = '0.4.1'
+def turbine = "app.cash.turbine:turbine:$turbine_version"
+deps.turbine = turbine
 
 ext.deps = deps
 

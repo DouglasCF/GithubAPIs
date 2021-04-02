@@ -89,4 +89,8 @@ dependencies {
 
     // Tests
     testImplementation deps.junit.junit
+    testImplementation deps.mockk
+    testImplementation deps.coroutines.test
+    testImplementation deps.androidx.test
+    testImplementation deps.turbine
 }
