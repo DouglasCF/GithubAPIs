@@ -46,7 +46,7 @@ class UserRepositoryTest {
 
         repository.fetch("username")
 
-        coVerify { remoteDataSource.fetch(any()) }
+        coVerify(exactly = 1) { remoteDataSource.fetch(any()) }
     }
 
     @Test
