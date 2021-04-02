@@ -52,10 +52,10 @@ dependencies {
     implementation deps.androidx.swiperefresh
 
     // Material Design
-    implementation deps.material.material
+    implementation deps.material
 
     // Leak Canary
-    debugImplementation deps.leak_canary.leak_canary
+    debugImplementation deps.leak_canary
 
     // Navigation Component
     implementation deps.navigation.fragment
@@ -77,12 +77,15 @@ dependencies {
     implementation deps.hilt.viewmodel
 
     // Coil
-    implementation deps.coil.coil
+    implementation deps.coil
 
     // Room
     implementation deps.room.runtime
     implementation deps.room.ktx
     kapt deps.room.compiler
+
+    // Lottie
+    implementation deps.lottie
 
     // Tests
     testImplementation deps.junit.junit

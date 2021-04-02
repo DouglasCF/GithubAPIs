@@ -47,7 +47,12 @@ class AvatarsFragment : BaseFragment<FragmentAvatarsBinding>(R.layout.fragment_a
     }
 
     private fun handleContent(content: AvatarsState.Content) {
-        viewAdapter.list = content.users
+        if (content.users.isEmpty()) {
+            binding.gAvatarsEmpty.isVisible = true
+        } else {
+            binding.gAvatarsEmpty.isVisible = false
+            viewAdapter.list = content.users
+        }
     }
 
     private fun handleLoading(loading: Boolean) {

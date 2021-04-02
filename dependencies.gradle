@@ -33,8 +33,7 @@ junit.junit = "junit:junit:$junit_version"
 deps.junit = junit
 
 def material_version = '1.2.1'
-def material = [:]
-material.material = "com.google.android.material:material:$material_version"
+def material = "com.google.android.material:material:$material_version"
 deps.material = material
 
 def navigation_version = '2.3.2'
@@ -51,8 +50,7 @@ coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutin
 deps.coroutines = coroutines
 
 def leak_canary_version = '2.6'
-def leak_canary = [:]
-leak_canary.leak_canary = "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+def leak_canary = "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
 deps.leak_canary = leak_canary
 
 def retrofit_version = '2.9.0'
@@ -73,8 +71,7 @@ hilt.androidx_compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
 deps.hilt = hilt
 
 def coil_version = '1.1.0'
-def coil = [:]
-coil.coil = "io.coil-kt:coil:$coil_version"
+def coil = "io.coil-kt:coil:$coil_version"
 deps.coil = coil
 
 def room_version = '2.2.6'
@@ -83,6 +80,10 @@ room.runtime = "androidx.room:room-runtime:$room_version"
 room.ktx = "androidx.room:room-ktx:$room_version"
 room.compiler = "androidx.room:room-compiler:$room_version"
 deps.room = room
+
+def lottie_version = '3.6.1'
+def lottie = "com.airbnb.android:lottie:$lottie_version"
+deps.lottie = lottie
 
 ext.deps = deps
 
