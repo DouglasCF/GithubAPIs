@@ -1,30 +1,26 @@
-package br.com.fornaro.githubapis.features.emojis
+package br.com.fornaro.githubapis.features.avatars
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import br.com.fornaro.githubapis.databinding.ItemEmojiBinding
-import br.com.fornaro.githubapis.domain.models.Emoji
+import br.com.fornaro.githubapis.databinding.ItemAvatarBinding
+import br.com.fornaro.githubapis.domain.models.User
 import coil.load
 
-class EmojiAdapter(
-    private val action: (Emoji) -> Unit
-) : RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
+class AvatarAdapter(
+    private val action: (User) -> Unit
+) : RecyclerView.Adapter<AvatarAdapter.ViewHolder>() {
 
-    var list = emptyList<Emoji>()
+    var list = emptyList<User>()
         set(value) {
-            val diffResult = DiffUtil.calculateDiff(EmojiDiffUtil(value, field))
+            val diffResult = DiffUtil.calculateDiff(UserDiffUtil(value, field))
             field = value
             diffResult.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        ItemEmojiBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        ),
+        ItemAvatarBinding.inflate(LayoutInflater.from(parent.context), parent, false),
         action
     )
 
@@ -35,18 +31,18 @@ class EmojiAdapter(
     override fun getItemCount() = list.size
 
     class ViewHolder(
-        private val binding: ItemEmojiBinding,
-        private val action: (Emoji) -> Unit
+        private val binding: ItemAvatarBinding,
+        private val action: (User) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(emoji: Emoji) = with(binding) {
-            ivItemEmoji.load(emoji.url)
-            ivItemEmoji.setOnClickListener { action(emoji) }
+        fun bind(user: User) = with(binding) {
+            ivItemAvatar.load(user.imageUrl)
+            ivItemAvatar.setOnClickListener { action(user) }
         }
     }
 
-    class EmojiDiffUtil(
-        private val new: List<Emoji>,
-        private val old: List<Emoji>
+    class UserDiffUtil(
+        private val new: List<User>,
+        private val old: List<User>
     ) : DiffUtil.Callback() {
         override fun getOldListSize() = old.size
 
@@ -56,6 +52,6 @@ class EmojiAdapter(
             new[newItemPosition] == old[oldItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            new[newItemPosition].name == old[oldItemPosition].name
+            new[newItemPosition].login == old[oldItemPosition].login
     }
 }
