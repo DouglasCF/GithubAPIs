@@ -35,8 +35,8 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk 
-  release:
-    name: Release APK
+  upload:
+    name: Upload APK
     needs: apk
     runs-on: ubuntu-latest
     steps:
@@ -51,8 +51,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           tag_name: v${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-      - name: Upload Release APK
+          release_name: v${{ github.run_number }}
+      - name: Upload APK
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
         env:
@@ -60,5 +60,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: apk/app-debug.apk
-          asset_name: app-debug.apk
+          asset_name: app-debug-${{ github.run_number }}.apk
           asset_content_type: application/zip
