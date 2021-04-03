@@ -28,6 +28,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         setupEmojiListButton()
         setupSearchButton()
         setupAvatarListButton()
+        setupGoogleReposButton()
         setupViewModel()
     }
 
@@ -56,6 +57,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private fun setupAvatarListButton() = with(binding.bMainAvatarList) {
         setOnClickListener { findNavController().navigate(R.id.action_avatarsFragment) }
+    }
+
+    private fun setupGoogleReposButton() = with(binding.bMainGoogleRepos) {
+        setOnClickListener { findNavController().navigate(R.id.action_googleReposFragment) }
     }
 
     private fun setupViewModel() = with(viewModel) {
