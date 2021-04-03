@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_avatarsFragment"
             app:destination="@id/avatarsFragment" />
+        <action
+            android:id="@+id/action_googleReposFragment"
+            app:destination="@id/googleReposFragment" />
     </fragment>
     <fragment
         android:id="@+id/emojisFragment"
@@ -27,4 +30,9 @@
         android:name="br.com.fornaro.githubapis.features.avatars.AvatarsFragment"
         android:label="fragment_avatars"
         tools:layout="@layout/fragment_avatars" />
+    <fragment
+        android:id="@+id/googleReposFragment"
+        android:name="br.com.fornaro.githubapis.features.googlerepos.GoogleReposFragment"
+        android:label="fragment_google_repos"
+        tools:layout="@layout/fragment_google_repos" />
 </navigation>

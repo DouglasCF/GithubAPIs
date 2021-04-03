@@ -96,6 +96,10 @@ def turbine_version = '0.4.1'
 def turbine = "app.cash.turbine:turbine:$turbine_version"
 deps.turbine = turbine
 
+def paging_version = '3.0.0-beta03'
+def paging = "androidx.paging:paging-runtime-ktx:$paging_version"
+deps.paging = paging
+
 ext.deps = deps
 
 static def addRepos(RepositoryHandler handler) {

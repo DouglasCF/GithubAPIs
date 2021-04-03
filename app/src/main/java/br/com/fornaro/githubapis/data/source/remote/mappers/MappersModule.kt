@@ -14,4 +14,7 @@ object MappersModule {
 
     @Provides
     fun provideUserMapper(): UserMapperAlias = UserMapper
+
+    @Provides
+    fun provideRepoMapper(): RepoMapperAlias = RepoMapper
 }
