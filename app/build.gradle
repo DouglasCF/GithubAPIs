@@ -87,6 +87,9 @@ dependencies {
     // Lottie
     implementation deps.lottie
 
+    // Paging
+    implementation deps.paging
+
     // Tests
     testImplementation deps.junit.junit
     testImplementation deps.mockk
