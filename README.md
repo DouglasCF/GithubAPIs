@@ -20,7 +20,7 @@ To develop this app, this architecture has been built:
 - ViewBinding for binding;
 - Retrofit for network;
 - Room for DB;
-- Paging 3;
+- Paging 3 for pagination;
 - MockK for tests;
 
 ## CI/CD
