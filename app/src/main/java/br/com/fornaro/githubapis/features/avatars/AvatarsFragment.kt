@@ -36,6 +36,7 @@ class AvatarsFragment : BaseFragment<FragmentAvatarsBinding>(R.layout.fragment_a
 
     private fun setupViewModel() = with(viewModel) {
         lifecycleScope.launch { state.collect(::handleState) }
+        lifecycleScope.launch { message.collect(::handleMessage) }
     }
 
     private fun handleState(state: AvatarsState) {

@@ -14,4 +14,10 @@
         tools:itemCount="4"
         tools:listitem="@layout/item_google_repos" />
 
+    <ProgressBar
+        android:id="@+id/pb_google_repos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
 </FrameLayout>
