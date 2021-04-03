@@ -2,12 +2,17 @@ package br.com.fornaro.githubapis.features.googlerepos
 
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.githubapis.domain.models.Repo
+import br.com.fornaro.githubapis.domain.repositories.GoogleReposRepository
 import br.com.fornaro.githubapis.features.BaseViewModel
-import kotlinx.coroutines.delay
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GoogleReposViewModel : BaseViewModel() {
+@HiltViewModel
+class GoogleReposViewModel @Inject constructor(
+    private val googleReposRepository: GoogleReposRepository
+) : BaseViewModel() {
 
     private val _state = MutableStateFlow<GoogleReposState>(GoogleReposState.Loading)
     val state get() = _state
@@ -19,8 +24,8 @@ class GoogleReposViewModel : BaseViewModel() {
     private fun loadRepos() {
         viewModelScope.launch(exceptionHandler) {
             _state.value = GoogleReposState.Loading
-            delay(2000)
-            _state.value = GoogleReposState.Content(listOf(Repo("repo 1"),Repo("repo 2")))
+            val repos = googleReposRepository.fetch()
+            _state.value = GoogleReposState.Content(repos = repos)
         }
     }
 }

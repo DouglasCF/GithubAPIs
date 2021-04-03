@@ -8,9 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import br.com.fornaro.githubapis.R
 import br.com.fornaro.githubapis.databinding.FragmentGoogleReposBinding
 import br.com.fornaro.githubapis.features.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class GoogleReposFragment :
     BaseFragment<FragmentGoogleReposBinding>(R.layout.fragment_google_repos) {
 
