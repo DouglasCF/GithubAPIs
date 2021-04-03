@@ -22,6 +22,11 @@ To develop this app, this architecture has been built:
 - Room for DB;
 - MockK for tests;
 
+## CI/CD
+Each new pull request will execute a pipeline that will test the app.
+
+Each new merge to develop will execute a pipeline that will test, build apk and upload to [Github Release page](https://github.com/DouglasCF/GithubAPIs/releases).
+
 ## Tasks
 
 The tasks has been planned used Notion where you can find them here: https://www.notion.so/fornaro/Github-APIs-App-9afb1a92dc394dd9b2597b59a23cf376
