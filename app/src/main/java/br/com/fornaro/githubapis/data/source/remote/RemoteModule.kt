@@ -14,7 +14,4 @@ abstract class RemoteModule {
 
     @Binds
     abstract fun bindUserRemoteDataSource(impl: UserRetrofitRemoteDataSource): UserRemoteDataSource
-
-    @Binds
-    abstract fun bindRepoRemoteDataSource(impl: RepoRetrofitRemoteDataSource): RepoRemoteDataSource
 }

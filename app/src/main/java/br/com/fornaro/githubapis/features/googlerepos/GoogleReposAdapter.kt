@@ -2,27 +2,21 @@ package br.com.fornaro.githubapis.features.googlerepos
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.fornaro.githubapis.databinding.ItemGoogleReposBinding
 import br.com.fornaro.githubapis.domain.models.Repo
 
-class GoogleReposAdapter : RecyclerView.Adapter<GoogleReposAdapter.ViewHolder>() {
-
-    var list = emptyList<Repo>()
-        set(value) {
-            val diffResult = DiffUtil.calculateDiff(UserDiffUtil(value, field))
-            field = value
-            diffResult.dispatchUpdatesTo(this)
-        }
+class GoogleReposAdapter : PagingDataAdapter<Repo, GoogleReposAdapter.ViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         ItemGoogleReposBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(list[position])
-
-    override fun getItemCount() = list.size
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        getItem(position)?.let(holder::bind)
+    }
 
     class ViewHolder(
         private val binding: ItemGoogleReposBinding
@@ -32,18 +26,13 @@ class GoogleReposAdapter : RecyclerView.Adapter<GoogleReposAdapter.ViewHolder>()
         }
     }
 
-    class UserDiffUtil(
-        private val new: List<Repo>,
-        private val old: List<Repo>
-    ) : DiffUtil.Callback() {
-        override fun getOldListSize() = old.size
+    companion object {
+        private val COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
+            override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean =
+                oldItem.fullName == newItem.fullName
 
-        override fun getNewListSize() = new.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            new[newItemPosition] == old[oldItemPosition]
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            new[newItemPosition].fullName == old[oldItemPosition].fullName
+            override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean =
+                oldItem == newItem
+        }
     }
 }
