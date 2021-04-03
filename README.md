@@ -6,7 +6,7 @@ To fetch the emojis: https://api.github.com/emojis
 
 To fetch users: https://api.github.com/users/:username
 
-To fetch users repos: https://api.github.com/users/:username/:repos
+To fetch users repos: https://api.github.com/users/:username/repos
 
 ## Architecture
 
