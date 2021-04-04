@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import br.com.fornaro.githubapis.R
 import br.com.fornaro.githubapis.databinding.FragmentGoogleReposBinding
@@ -27,12 +28,33 @@ class GoogleReposFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupRetryButton()
         setupViewModel()
+    }
+
+    private fun setupRetryButton() = with(binding.bGoogleReposRetry) {
+        setOnClickListener { viewAdapter.retry() }
     }
 
     private fun setupRecyclerView() = with(binding.rvGoogleRepos) {
         setHasFixedSize(true)
-        adapter = viewAdapter
+        adapter = viewAdapter.withLoadStateHeaderAndFooter(
+            header = GoogleReposStateAdapter { viewAdapter.retry() },
+            footer = GoogleReposStateAdapter { viewAdapter.retry() }
+        )
+        viewAdapter.addLoadStateListener { loadState ->
+            val isEmptyList = loadState.refresh is LoadState.NotLoading &&
+                    viewAdapter.itemCount == 0
+            showEmptyList(isEmptyList)
+
+            binding.rvGoogleRepos.isVisible = loadState.source.refresh is LoadState.NotLoading
+            binding.pbGoogleRepos.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.bGoogleReposRetry.isVisible = loadState.source.refresh is LoadState.Error
+        }
+    }
+
+    private fun showEmptyList(isEmptyList: Boolean) {
+        binding.tvGoogleReposEmptyMessage.isVisible = isEmptyList
     }
 
     private fun setupViewModel() = with(viewModel) {
