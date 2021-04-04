@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -15,6 +17,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -34,12 +42,58 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Kotlin
+    implementation deps.kotlin.stdlib
+
+    // AndroidX
+    implementation deps.androidx.core
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.swiperefresh
+
+    // Material Design
+    implementation deps.material
+
+    // Leak Canary
+    debugImplementation deps.leak_canary
+
+    // Navigation Component
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
+
+    // Coroutines
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+
+    // Retrofit
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.moshi
+    implementation deps.retrofit.moshi_ktx
+
+    // Hilt
+    kapt deps.hilt.google_compiler
+    implementation deps.hilt.android
+    kapt deps.hilt.androidx_compiler
+    implementation deps.hilt.viewmodel
+
+    // Coil
+    implementation deps.coil
+
+    // Room
+    implementation deps.room.runtime
+    implementation deps.room.ktx
+    kapt deps.room.compiler
+
+    // Lottie
+    implementation deps.lottie
+
+    // Paging
+    implementation deps.paging
+
+    // Tests
+    testImplementation deps.junit.junit
+    testImplementation deps.mockk
+    testImplementation deps.coroutines.test
+    testImplementation deps.androidx.test
+    testImplementation deps.turbine
 }

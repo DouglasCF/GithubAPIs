@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="br.com.fornaro.githubapis.features.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_emojisFragment"
+            app:destination="@id/emojisFragment" />
+        <action
+            android:id="@+id/action_avatarsFragment"
+            app:destination="@id/avatarsFragment" />
+        <action
+            android:id="@+id/action_googleReposFragment"
+            app:destination="@id/googleReposFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emojisFragment"
+        android:name="br.com.fornaro.githubapis.features.emojis.EmojisFragment"
+        android:label="fragment_emojis"
+        tools:layout="@layout/fragment_emojis" />
+    <fragment
+        android:id="@+id/avatarsFragment"
+        android:name="br.com.fornaro.githubapis.features.avatars.AvatarsFragment"
+        android:label="fragment_avatars"
+        tools:layout="@layout/fragment_avatars" />
+    <fragment
+        android:id="@+id/googleReposFragment"
+        android:name="br.com.fornaro.githubapis.features.googlerepos.GoogleReposFragment"
+        android:label="fragment_google_repos"
+        tools:layout="@layout/fragment_google_repos" />
+</navigation>

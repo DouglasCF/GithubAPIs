@@ -1,0 +1,110 @@
+ext.min_sdk = 21
+ext.target_sdk = 30
+ext.build_tools = '30.0.1'
+
+ext.deps = [:]
+def deps = [:]
+
+def build_tool = '4.1.3'
+def android = [:]
+android.build_tool = "com.android.tools.build:gradle:$build_tool"
+deps.android = android
+
+def core_version = '1.3.2'
+def appcompat_version = '1.2.0'
+def constraint_layout_version = '2.0.4'
+def swiperefresh_version = '1.1.0'
+def test_version = '2.1.0'
+def androidx = [:]
+androidx.core = "androidx.core:core-ktx:$core_version"
+androidx.appcompat = "androidx.appcompat:appcompat:$appcompat_version"
+androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+androidx.swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
+androidx.test = "androidx.arch.core:core-testing:$test_version"
+deps.androidx = androidx
+
+def kotlin_version = '1.4.30'
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+deps.kotlin = kotlin
+
+def junit_version = '4.13.2'
+def junit = [:]
+junit.junit = "junit:junit:$junit_version"
+deps.junit = junit
+
+def material_version = '1.2.1'
+def material = "com.google.android.material:material:$material_version"
+deps.material = material
+
+def navigation_version = '2.3.2'
+def navigation = [:]
+navigation.fragment = "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+navigation.ui = "androidx.navigation:navigation-ui-ktx:$navigation_version"
+navigation.safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+deps.navigation = navigation
+
+def coroutines_version = '1.4.3'
+def coroutines = [:]
+coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+coroutines.test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+deps.coroutines = coroutines
+
+def leak_canary_version = '2.6'
+def leak_canary = "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+deps.leak_canary = leak_canary
+
+def retrofit_version = '2.9.0'
+def moshi_kotlin_version = '1.11.0'
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+retrofit.moshi = "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+retrofit.moshi_ktx = "com.squareup.moshi:moshi-kotlin:$moshi_kotlin_version"
+deps.retrofit = retrofit
+
+def hilt_version = '2.31.2-alpha'
+def hilt = [:]
+hilt.plugin = "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+hilt.android = "com.google.dagger:hilt-android:$hilt_version"
+hilt.google_compiler = "com.google.dagger:hilt-android-compiler:$hilt_version"
+hilt.viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+hilt.androidx_compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
+deps.hilt = hilt
+
+def coil_version = '1.1.0'
+def coil = "io.coil-kt:coil:$coil_version"
+deps.coil = coil
+
+def room_version = '2.2.6'
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$room_version"
+room.ktx = "androidx.room:room-ktx:$room_version"
+room.compiler = "androidx.room:room-compiler:$room_version"
+deps.room = room
+
+def lottie_version = '3.6.1'
+def lottie = "com.airbnb.android:lottie:$lottie_version"
+deps.lottie = lottie
+
+def mockk_version = '1.9.3'
+def mockk = "io.mockk:mockk:$mockk_version"
+deps.mockk = mockk
+
+def turbine_version = '0.4.1'
+def turbine = "app.cash.turbine:turbine:$turbine_version"
+deps.turbine = turbine
+
+def paging_version = '3.0.0-beta03'
+def paging = "androidx.paging:paging-runtime-ktx:$paging_version"
+deps.paging = paging
+
+ext.deps = deps
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+}
+
+ext.addRepos = this.&addRepos

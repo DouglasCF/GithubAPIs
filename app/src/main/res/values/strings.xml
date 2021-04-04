@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">GithubAPIs</string>
+
+    <string name="main_random_emoji_button">Random Emoji</string>
+    <string name="main_emoji_list_button">Emoji List</string>
+    <string name="main_search_hint">Insert GitHub username</string>
+    <string name="main_search_button">Search</string>
+    <string name="main_search_user_successfully">User found!</string>
+    <string name="main_search_user_error">User not found!</string>
+    <string name="main_avatar_list_button">Avatar List</string>
+    <string name="main_google_repos_button">Google Repos</string>
+
+    <string name="message_event_no_internet">No internet</string>
+    <string name="message_event_generic">Something wrong happened. Please try again</string>
+    <string name="retry_button">Retry</string>
+
+    <string name="avatars_empty_state_text">No avatar found</string>
+
+    <string name="google_repos_empty_list">No repositories found</string>
 </resources>
