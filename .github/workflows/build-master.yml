@@ -44,10 +44,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: aab
-      - name: Rename files
-        run: |
-          mv aab/debug/app-debug.aab aab/debug/app-debug-${{ github.run_number }}.aab
-          mv aab/release/app-release.aab aab/release/app-release-${{ github.run_number }}.aab
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -63,6 +59,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: aab/
+          asset_path: aab/release/app-release.aab
+          asset_name: app-release-${{ github.run_number }}.aab
+          asset_content_type: application/zip
+      - name: Upload Debug AAB
+        id: upload_debug_asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: aab/debug/app-debug.aab
+          asset_name: app-debug-${{ github.run_number }}.aab
           asset_content_type: application/zip
           
