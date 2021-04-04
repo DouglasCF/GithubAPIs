@@ -44,12 +44,10 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: aab
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            mv aab/debug/app-debug.aab aab/debug/app-debug-${{ github.run_number }}.aab
-            mv aab/release/app-release.aab aab/release/app-release-${{ github.run_number }}.aab
+      - name: Rename files
+        run: |
+          mv aab/debug/app-debug.aab aab/debug/app-debug-${{ github.run_number }}.aab
+          mv aab/release/app-release.aab aab/release/app-release-${{ github.run_number }}.aab
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
