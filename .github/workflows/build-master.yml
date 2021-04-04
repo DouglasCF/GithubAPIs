@@ -43,7 +43,13 @@ jobs:
       - name: Download AAB from build
         uses: actions/download-artifact@v1
         with:
-          name: aab  
+          name: aab
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            mv aab/debug/app-debug.aab aab/debug/app-debug-${{ github.run_number }}.aab
+            mv aab/release/app-release.aab aab/release/app-release-${{ github.run_number }}.aab
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -52,11 +58,13 @@ jobs:
         with:
           tag_name: r${{ github.run_number }}
           release_name: r${{ github.run_number }}
-      - name: Upload AAB
+      - name: Upload Release AAB
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: aab/
           asset_content_type: application/zip
+          
